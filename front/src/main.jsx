@@ -9,10 +9,24 @@ import {
 import Root from './routes/root';
 import ErrorPage from './error-page';
 import Home from './components/Home';
+import Signup from './components/Signup';
+import Signin from './components/Signin';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement: <ErrorPage />,
+    
+  },
+  {
+    path: "/signup",
+    element: <Signup/>,
+    errorElement: <ErrorPage />,
+    
+  },
+  {
+    path: "/signin",
+    element: <Signin/>,
     errorElement: <ErrorPage />,
     
   },

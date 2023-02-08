@@ -19,20 +19,18 @@ function Home() {
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to={'/signin'}
+            <Link
+              to={"/signin"}
               className="block w-full rounded bg-red-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto"
-              
-              >
+            >
               Sign in
-            
-              </Link>
-    <Link to={'/signup'} 
+            </Link>
+            <Link
+              to={"/signup"}
               className="block w-full rounded px-12 py-3 text-sm font-medium text-red-600 shadow hover:text-red-700 focus:outline-none focus:ring active:text-red-500 sm:w-auto"
-              
-              >
+            >
               Sing up
-              </Link>
-            
+            </Link>
           </div>
         </div>
       </div>
