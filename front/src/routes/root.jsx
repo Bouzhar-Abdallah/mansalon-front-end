@@ -1,10 +1,10 @@
 export default function Root() {
     return (
       <>
-        <div className="flex" id="sidebar">
+        <div id="sidebar">
           <h1>React Router Contacts</h1>
           <div>
-            <form className="flex" id="search-form" role="search">
+            <form id="search-form" role="search">
               <input
                 id="q"
                 aria-label="Search contacts"
