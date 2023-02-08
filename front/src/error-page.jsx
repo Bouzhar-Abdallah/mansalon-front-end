@@ -5,25 +5,29 @@ export default function ErrorPage() {
   console.error(error);
 
   return (
-   
-    <main class="h-screen w-full flex flex-col justify-center items-center bg-[#1A2238]">
-        <h1 class="text-9xl font-extrabold text-white tracking-widest">404</h1>
-        <div class="bg-[#FF6A3D] px-2 text-sm rounded rotate-12 absolute">
-            Page Not Found
+    <div class="bg-indigo-900 relative overflow-hidden h-screen">
+         {" "}
+      <img
+        src="https://external-preview.redd.it/4MddL-315mp40uH18BgGL2-5b6NIPHcDMBSWuN11ynM.jpg?width=960&crop=smart&auto=webp&s=b98d54a43b3dac555df398588a2c791e0f3076d9"
+        class="absolute h-full w-full object-cover"
+      />
+          <div class="inset-0 bg-black opacity-25 absolute">    </div>   {" "}
+      <div class="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-32 xl:py-40">
+               {" "}
+        <div class="w-full font-mono flex flex-col items-center relative z-10">
+                     {" "}
+          <h1 class="font-extrabold text-5xl text-center text-white leading-tight mt-4">
+              You are all alone here          {" "}
+          </h1>
+                     {" "}
+          <p class="font-extrabold text-3xl my-44 text-white animate-bounce">
+            <i>{error.statusText || error.message}</i>                         
+             {" "}
+          </p>
+                 {" "}
         </div>
-        <button class="mt-5">
-          <a
-            class="relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring"
-          >
-            <span
-              class="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-[#FF6A3D] group-hover:translate-y-0 group-hover:translate-x-0"
-            ></span>
-    
-            <span class="relative block px-8 py-3 bg-[#1A2238] border border-current">
-              <router-link to="/">Go Home</router-link>
-            </span>
-          </a>
-        </button>
-    </main>
+           {" "}
+      </div>
+    </div>
   );
 }
