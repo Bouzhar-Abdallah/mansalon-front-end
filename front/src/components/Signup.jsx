@@ -1,20 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {useState} from 'react'
-function Signup() {
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
-  const [email, setEmail] = useState('')
-  const [prenom, setprenom] = useState('')
-  const [nom, setnom] = useState('')
-  const [numero_tel, setNumerotel] = useState('')
-  const utilisateur = {
-    nom: nom,
-    prenom: prenom,
-    enail: email,
-    numero_tel: numero_tel
-  }
+function Signup() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
-    <section className="py-10 bg-gray-100  bg-opacity-50 h-screen">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="py-10 bg-gray-100  bg-opacity-50 h-screen"
+    >
       <div className="mx-auto container max-w-2xl md:w-3/4 shadow-md">
         <div className="bg-gray-100 p-4 border-t-2 bg-opacity-5 border-red-500 rounded-t">
           <div className="max-w-sm mx-auto md:w-full md:mx-0">
@@ -46,12 +48,20 @@ function Signup() {
                 </div>
                 <input
                   type="email"
+                  name="email"
                   className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                   placeholder="email@example.com"
-                  onChange={ Event => setEmail(Event.target.value) }
-                  />
+                  {...register("email",{
+                    required: "ce champ est obligatoire",
+                    pattern: {
+                      type: 'email',
+                      required: "ce champ est obligatoire",
+                    }
+
+                  })}
+                />
               </div>
-                  <p>{ email }</p>
+              {errors.email && <p>{errors.email.message}</p>}
             </div>
           </div>
 
@@ -81,10 +91,16 @@ function Signup() {
                     type="text"
                     className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                     placeholder="Charly Olivas"
-                    onChange={ Event => setprenom(Event.target.value)}
+                    {...register("prenom",{
+                      required: 'ce champ est obligatoire',
+                      pattern:{
+                        value: /^[A-Za-z]+$/,
+                        message: "merci d'introduire des lettres selemon"
+                      }
+                    })}
                   />
                 </div>
-                <p>{prenom}</p>
+                {errors.prenom && <p>{errors.prenom.message}</p>}
               </div>
               <div>
                 <label className="text-sm text-gray-400">last name</label>
@@ -108,10 +124,16 @@ function Signup() {
                     type="text"
                     className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                     placeholder="Nom"
-                    onChange={Event => setnom(Event.target.value)}
+                    {...register("nom",{
+                      required : "ce champ est obligatoire",
+                      pattern: {
+                        value : /^[A-Za-z]+$/,
+                      message: "merci d'introduire des lettres selemon"},
+
+                    })}
                   />
                 </div>
-                <p>{nom}</p>
+                {errors.nom && <p>{errors.nom.message}</p>}
               </div>
               <div>
                 <label className="text-sm text-gray-400">Phone number</label>
@@ -132,26 +154,39 @@ function Signup() {
                     </svg>
                   </div>
                   <input
-                    type="text"
                     className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
-                    placeholder="12341234"
-                    onChange={Event => setNumerotel(Event.target.value)}
+                    name="numero_tel"
+                    autoComplete="off"
+                    {...register("numero_tel", {
+                      required: 'numero de tell est obligatoire',
+                      pattern: {
+                        value : /\d+/,
+                        message: "ce numero de telephone n'est pas valid"
+                      },
+                      minLength:{
+                        value :9,
+                        message : "ce numero trop court"
+                      },
+                      maxLength:{
+                        value :10,
+                        message : "ce numero trop long"
+                      }
+                    })}
                   />
+
                 </div>
-                <p>
-                  {numero_tel}
-                </p>
+                  {errors.numero_tel && <p>{errors.numero_tel.message}</p>}
               </div>
             </div>
           </div>
-
+          
           <hr />
           <div className="md:inline-flex w-full space-y-4 md:space-y-0 p-8 text-gray-500 items-center">
             <div className="md:w-3/12 text-center md:pl-6 mx-auto">
-              <button onClick={()=>{
-                console.log(utilisateur)
-              }} className="text-white w-full mx-auto max-w-sm rounded text-center bg-red-600 py-2 px-4 inline-flex items-center focus:outline-none md:float-right">
-               
+              <button
+                type="submit"
+                className="text-white w-full mx-auto max-w-sm rounded text-center bg-red-600 py-2 px-4 inline-flex items-center focus:outline-none md:float-right"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -159,7 +194,6 @@ function Signup() {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  
                 >
                   <path
                     strokeLinecap="round"
@@ -175,7 +209,7 @@ function Signup() {
           <hr />
         </div>
       </div>
-    </section>
+    </form>
   );
 }
 

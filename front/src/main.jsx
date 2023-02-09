@@ -11,6 +11,7 @@ import ErrorPage from './error-page';
 import Home from './components/Home';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     
   },
+
 
   /* {
     path: "home",
