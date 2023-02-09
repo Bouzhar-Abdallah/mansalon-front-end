@@ -51,6 +51,7 @@ function Signup() {
                   name="email"
                   className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                   placeholder="email@example.com"
+                  autoComplete="off"
                   {...register("email",{
                     required: "ce champ est obligatoire",
                     pattern: {
@@ -90,7 +91,8 @@ function Signup() {
                   <input
                     type="text"
                     className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
-                    placeholder="Charly Olivas"
+                    placeholder="entrez votre nom"
+                    autoComplete="off"
                     {...register("prenom",{
                       required: 'ce champ est obligatoire',
                       pattern:{
@@ -124,6 +126,7 @@ function Signup() {
                     type="text"
                     className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                     placeholder="Nom"
+                    autoComplete="off"
                     {...register("nom",{
                       required : "ce champ est obligatoire",
                       pattern: {
