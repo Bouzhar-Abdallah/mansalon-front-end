@@ -1,16 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useContext } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './components/Home'
+import Signin from './components/Signin';
+import Signup from './components/Signup';
+import ErrorPage from './error-page';
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  //const auth = useContext(authentified)
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+      errorElement: <ErrorPage />,
+      
+    },
+    {
+      path: "/signup",
+      element: <Signup />,
+      errorElement: <ErrorPage />,
+      
+    },
+    {
+      path: "/signin",
+      element: <Signin />,
+      errorElement: <ErrorPage />,
+      
+    },
+  ]);
 
   return (
     
     <div className="App">
-      <Home/>
+      
+      <RouterProvider router={router} /> 
     </div>
   )
 }

@@ -1,16 +1,42 @@
 import React from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const [errMsg, setErrorMsg] = useState("");
+  const [success, setSuccess] = useState(true);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8888/api/home/signup",
+        data,
+        { "Content-Type": "application/json" }
+      );
+      
+        if (response.status === 201) {
+          setErrorMsg('compte creé avec succes')
+          navigate("/signin")
+        }
+        
+      } catch (error) {
+        if (!error?.response) {
+        } else if (error.response?.status === 409) {
+          setErrorMsg('ce numero telefone existe deja dans la base de donnes')
+          setSuccess(false)
+        } else {
+          setErrorMsg('registration failed')
+          setSuccess(false)
+      }
+    }
   };
   return (
     <form
@@ -24,6 +50,14 @@ function Signup() {
               <h1 className="text-gray-600">Creaction nouveau compte</h1>
             </div>
           </div>
+          {success ? (
+                <></>
+            )
+           :
+            (<div className="bg-red-300 flex items-center justify-center text-center border border-red-600 px-8 py-4">
+              <p>{errMsg}</p>
+            </div>
+            )}
         </div>
         <div className="bg-white space-y-6">
           <div className="md:inline-flex space-y-4 md:space-y-0 w-full p-4 text-gray-500 items-center">
@@ -52,13 +86,12 @@ function Signup() {
                   className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                   placeholder="email@example.com"
                   autoComplete="off"
-                  {...register("email",{
+                  {...register("email", {
                     required: "ce champ est obligatoire",
                     pattern: {
-                      type: 'email',
+                      type: "email",
                       required: "ce champ est obligatoire",
-                    }
-
+                    },
                   })}
                 />
               </div>
@@ -93,12 +126,12 @@ function Signup() {
                     className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                     placeholder="entrez votre nom"
                     autoComplete="off"
-                    {...register("prenom",{
-                      required: 'ce champ est obligatoire',
-                      pattern:{
+                    {...register("prenom", {
+                      required: "ce champ est obligatoire",
+                      pattern: {
                         value: /^[A-Za-z]+$/,
-                        message: "merci d'introduire des lettres selemon"
-                      }
+                        message: "merci d'introduire des lettres selemon",
+                      },
                     })}
                   />
                 </div>
@@ -127,12 +160,12 @@ function Signup() {
                     className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                     placeholder="Nom"
                     autoComplete="off"
-                    {...register("nom",{
-                      required : "ce champ est obligatoire",
+                    {...register("nom", {
+                      required: "ce champ est obligatoire",
                       pattern: {
-                        value : /^[A-Za-z]+$/,
-                      message: "merci d'introduire des lettres selemon"},
-
+                        value: /^[A-Za-z]+$/,
+                        message: "merci d'introduire des lettres selemon",
+                      },
                     })}
                   />
                 </div>
@@ -161,28 +194,27 @@ function Signup() {
                     name="numero_tel"
                     autoComplete="off"
                     {...register("numero_tel", {
-                      required: 'numero de tell est obligatoire',
+                      required: "numero de tell est obligatoire",
                       pattern: {
-                        value : /\d+/,
-                        message: "ce numero de telephone n'est pas valid"
+                        value: /\d+/,
+                        message: "ce numero de telephone n'est pas valid",
                       },
-                      minLength:{
-                        value :9,
-                        message : "ce numero trop court"
+                      minLength: {
+                        value: 10,
+                        message: "ce numero trop court",
                       },
-                      maxLength:{
-                        value :10,
-                        message : "ce numero trop long"
-                      }
+                      maxLength: {
+                        value: 10,
+                        message: "ce numero trop long",
+                      },
                     })}
                   />
-
                 </div>
-                  {errors.numero_tel && <p>{errors.numero_tel.message}</p>}
+                {errors.numero_tel && <p>{errors.numero_tel.message}</p>}
               </div>
             </div>
           </div>
-          
+
           <hr />
           <div className="md:inline-flex w-full space-y-4 md:space-y-0 p-8 text-gray-500 items-center">
             <div className="md:w-3/12 text-center md:pl-6 mx-auto">
