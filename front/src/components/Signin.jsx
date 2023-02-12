@@ -18,7 +18,7 @@ function handleSubmit() {
 
     })
   } */
-  
+  if (token) {
     const data ={
       "identifiant" : token
     }
@@ -26,8 +26,11 @@ function handleSubmit() {
       "http://localhost:8888/api/home/login",
       data,
       { "Content-Type": "application/json" }
-    )
-    .then(response => console.log(response.data.user))
+      )
+      .then(response => {
+        console.log(response.statusText)
+      })
+    }
     
 
 }
