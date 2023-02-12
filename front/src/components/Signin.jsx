@@ -2,7 +2,6 @@ import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { auth } from "../utilities/auth";
 import axios from "axios";
 export default function Signin() {
 
