@@ -41,7 +41,7 @@ export default class Signin extends Component {
                     </svg>
                   </div>
                   <input
-                    type="email"
+                    type="text"
                     className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                     placeholder="Token"
                     onChange={this.handleInputChange}
@@ -52,8 +52,8 @@ export default class Signin extends Component {
   
             <hr />
             <div className="md:inline-flex w-full space-y-4 md:space-y-0 p-8 text-gray-500 items-center">
-              <div className="md:w-3/12 text-center md:pl-6 mx-auto">
-                <button className="text-white w-full mx-auto max-w-sm rounded text-center bg-red-600 py-2 px-4 inline-flex items-center focus:outline-none md:float-right">
+              <div className= "text-center mx-auto md:flex  gap-5">
+                <button className="text-white w-full mx-auto max-w-sm rounded text-center bg-red-600 py-2 px-4 m-2 inline-flex items-center focus:outline-none md:float-right">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -70,6 +70,23 @@ export default class Signin extends Component {
                   </svg>
                   Submit
                 </button>
+                <Link to={"/signup"} className="text-white w-full mx-auto max-w-sm rounded text-center bg-red-600 py-2 px-4 m-2 inline-flex items-center focus:outline-none md:float-right">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    className="w-4 text-white mr-2"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+                    />
+                  </svg>
+                  register
+                </Link>
               </div>
             </div>
   

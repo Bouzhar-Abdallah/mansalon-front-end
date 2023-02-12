@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import Success from "./success";
 
 function Signup() {
   const [errMsg, setErrorMsg] = useState("");
   const [success, setSuccess] = useState(true);
+  const [accountCreated, setAcountCreated] = useState(false);
+  
   const navigate = useNavigate();
   const {
     register,
@@ -21,24 +24,28 @@ function Signup() {
         data,
         { "Content-Type": "application/json" }
       );
-      
-        if (response.status === 201) {
-          setErrorMsg('compte creé avec succes')
-          navigate("/signin")
-        }
-        
-      } catch (error) {
-        if (!error?.response) {
-        } else if (error.response?.status === 409) {
-          setErrorMsg('ce numero telefone existe deja dans la base de donnes')
-          setSuccess(false)
-        } else {
-          setErrorMsg('registration failed')
-          setSuccess(false)
+
+      if (response.status === 201) {
+        setErrorMsg("compte creé avec succes");
+        console.log(response);
+        setAcountCreated(response)
+        //navigate("/signin");
+      }
+    } catch (error) {
+      if (!error?.response) {
+      } else if (error.response?.status === 409) {
+        setErrorMsg("ce numero telefone existe deja dans la base de donnes");
+        setSuccess(false);
+      } else {
+        setErrorMsg("registration failed");
+        setSuccess(false);
       }
     }
   };
   return (
+    <>
+    
+    {accountCreated && <Success feedback={accountCreated}/>}
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="py-10 bg-gray-100  bg-opacity-50 h-screen"
@@ -51,13 +58,12 @@ function Signup() {
             </div>
           </div>
           {success ? (
-                <></>
-            )
-           :
-            (<div className="bg-red-300 flex items-center justify-center text-center border border-red-600 px-8 py-4">
+            <></>
+          ) : (
+            <div className="bg-red-300 flex items-center justify-center text-center border border-red-600 px-8 py-4">
               <p>{errMsg}</p>
             </div>
-            )}
+          )}
         </div>
         <div className="bg-white space-y-6">
           <div className="md:inline-flex space-y-4 md:space-y-0 w-full p-4 text-gray-500 items-center">
@@ -245,6 +251,7 @@ function Signup() {
         </div>
       </div>
     </form>
+    </>
   );
 }
 
