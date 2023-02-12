@@ -3,6 +3,7 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { auth } from "../utilities/auth";
+import axios from "axios";
 export default function Signin() {
 
   const [ token, setToken ] = useState()
@@ -17,6 +18,18 @@ function handleSubmit() {
 
     })
   } */
+  
+    const data ={
+      "identifiant" : token
+    }
+    axios.post(
+      "http://localhost:8888/api/home/login",
+      data,
+      { "Content-Type": "application/json" }
+    )
+    .then(response => console.log(response.data.user))
+    
+
 }
  
     return (
