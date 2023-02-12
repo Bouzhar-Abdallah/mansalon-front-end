@@ -1,13 +1,24 @@
 import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { auth } from "../utilities/auth";
+export default function Signin() {
 
-export default class Signin extends Component {
-  handleInputChange = (event) =>{
-    console.log(event.target.value)
-  }
+  const [ token, setToken ] = useState()
 
-  render (){
+function handleInputChange(event) {
+  setToken(event.target.value)
+    console.log(token)
+}
+function handleSubmit() {
+  /* () =>{
+    auth.login(()=>{
+
+    })
+  } */
+}
+ 
     return (
       <section className="py-10 bg-gray-100  bg-opacity-50 h-screen">
         <div className="mx-auto container max-w-2xl md:w-3/4 shadow-md">
@@ -44,7 +55,7 @@ export default class Signin extends Component {
                     type="text"
                     className="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                     placeholder="Token"
-                    onChange={this.handleInputChange}
+                    onChange={handleInputChange}
                   />
                 </div>
               </div>
@@ -53,7 +64,9 @@ export default class Signin extends Component {
             <hr />
             <div className="md:inline-flex w-full space-y-4 md:space-y-0 p-8 text-gray-500 items-center">
               <div className= "text-center mx-auto md:flex  gap-5">
-                <button className="text-white w-full mx-auto max-w-sm rounded text-center bg-red-600 py-2 px-4 m-2 inline-flex items-center focus:outline-none md:float-right">
+                <button  className="text-white w-full mx-auto max-w-sm rounded text-center bg-red-600 py-2 px-4 m-2 inline-flex items-center focus:outline-none md:float-right"
+                onClick={handleSubmit}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -95,5 +108,5 @@ export default class Signin extends Component {
         </div>
       </section>
     );
-  }
+  
 }
