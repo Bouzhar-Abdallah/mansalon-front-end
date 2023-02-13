@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, redirect } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { UserContext } from "../utilities/UserContext";
 export default function Signin() {
 
+const {user, setUser} = useContext(UserContext)
   const [ token, setToken ] = useState()
 
 function handleInputChange(event) {
@@ -27,7 +29,12 @@ function handleSubmit() {
       { "Content-Type": "application/json" }
       )
       .then(response => {
-        console.log(response.statusText)
+        if(response.data.message == 'login success'){
+          
+          
+          setUser({ isLoggedIn: true, ...response.data.user });
+          console.log('from signin '+user)
+        }
       })
     }
     
