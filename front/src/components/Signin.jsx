@@ -31,7 +31,7 @@ function handleSubmit() {
       .then(response => {
         if(response.data.message == 'login success'){
           setUser({ isLoggedIn: true, ...response.data.user });
-          navigate("/test")
+          navigate("/reservations")
           console.log('from signin '+user)
         }
       })

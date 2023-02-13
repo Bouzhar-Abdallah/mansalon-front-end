@@ -4,7 +4,7 @@ import PrivateRoutes from './utilities/PrivateRoutes';
 import Home from './components/Home'
 import Signin from './components/Signin';
 import Signup from './components/Signup';
-import Test from './components/test';
+import Reservations from './components/reservations';
 
 import ErrorPage from './error-page';
 import { UserContext } from './utilities/UserContext';
@@ -26,7 +26,7 @@ function App() {
       <UserContext.Provider value={{user, setUser}}> 
       <Routes >
         <Route element={<PrivateRoutes />} >
-          <Route element={<Test />} path="/test" exact />
+          <Route element={<Reservations />} path="/reservations" exact />
         </Route>
         <Route element={<Home />} path="/" />
         <Route element={<Signup />} path="/signup" />

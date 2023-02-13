@@ -1,6 +1,6 @@
 import { Accordion } from "flowbite-react";
 
-export default function Test() {
+export default function reservations() {
   return (
     <div>
       <Accordion collapseAll={true}>
