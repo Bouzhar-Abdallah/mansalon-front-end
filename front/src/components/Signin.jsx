@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Component } from "react";
-import { Link, Navigate, redirect } from "react-router-dom";
+import { Link, Navigate, redirect, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { UserContext } from "../utilities/UserContext";
@@ -8,7 +8,7 @@ export default function Signin() {
 
 const {user, setUser} = useContext(UserContext)
   const [ token, setToken ] = useState()
-
+const navigate = useNavigate()
 function handleInputChange(event) {
   setToken(event.target.value)
     console.log(token)
@@ -30,9 +30,8 @@ function handleSubmit() {
       )
       .then(response => {
         if(response.data.message == 'login success'){
-          
-          
           setUser({ isLoggedIn: true, ...response.data.user });
+          navigate("/test")
           console.log('from signin '+user)
         }
       })
