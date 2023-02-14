@@ -14,7 +14,7 @@ export default function reservations() {
 
 
   var days2 = [];
-  for (var i = 0; i < 30; i++) {
+  for (var i = 0; i < 1; i++) {
     var date = new Date();
     date.setDate(date.getDate() + i);
     var jsonDate = { 

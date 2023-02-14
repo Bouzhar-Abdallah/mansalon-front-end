@@ -4,6 +4,8 @@ import { useState } from "react";
 
 export default function Day(props) {
   const [availableHours, setAvailableHours] = useState(null);
+  const [reservedHours, setReservedHours] = useState(null);
+  const [workinHours, setWorkingdHours] = useState(null);
 
 const data = {
   "jour": props.dayName,
@@ -17,6 +19,25 @@ const data = {
   ).then(response => {
     setAvailableHours(response.data.available_hours)
     
+  })
+
+  axios.post(
+    "http://localhost:8888/api/home/reserved_Spots_Per_Day",
+    data,
+    { "Content-Type": "application/json" }
+  ).then(response => {
+    //setReservedHours(response.data.available_hours)
+   // console.log(response.data);
+  })
+
+  axios.post(
+    "http://localhost:8888/api/home/working_hours",
+    data,
+    { "Content-Type": "application/json" }
+  ).then(response => {
+    //setReservedHours(response.data.available_hours)
+    //setWorkingdHours(response.data)
+    //console.log(workinHours)
   })
  
     
