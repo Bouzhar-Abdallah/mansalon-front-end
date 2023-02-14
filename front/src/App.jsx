@@ -8,6 +8,7 @@ import Reservations from './components/reservations';
 
 import ErrorPage from './error-page';
 import { UserContext } from './utilities/UserContext';
+import Test from './components/test';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route element={<Home />} path="/" />
         <Route element={<Signup />} path="/signup" />
         <Route element={<Signin />} path="/signin" />
+        <Route element={<Test />} path="/test" />
       </Routes>
       </UserContext.Provider>
     </Router>
