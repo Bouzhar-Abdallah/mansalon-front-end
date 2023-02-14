@@ -3,13 +3,13 @@ import Day from "./day";
 
 export default function reservations() {
   const weekday = [
-  "Dimanche",
-  "Lundi",
-  "Mardi",
-  "Mercredi",
-  "Jeudi",
-  "Vendredi",
-  "Samedi",
+  "dimanche",
+  "lundi",
+  "mardi",
+  "mercredi",
+  "jeudi",
+  "vendredi",
+  "samedi",
 ];
 
 
@@ -41,7 +41,7 @@ export default function reservations() {
           <div className="w-full md:px-2 mx-auto space-y-2  p-2 border-t ">
             
             {days2.map((day)=>{
-              return <Day key={day.id} day={day} />
+              return <Day key={day.id} {...day} />
             })}
                   
                 

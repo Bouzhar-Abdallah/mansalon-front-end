@@ -1,23 +1,38 @@
+import axios from "axios";
 import { Accordion, Button, Breadcrumb } from "flowbite-react";
+import { useState } from "react";
 
 export default function Day(props) {
-  
+  const [availableHours, setAvailableHours] = useState(null);
 
+const data = {
+  "jour": props.dayName,
+  "date_jour": props.year + '-' + props.month + '-' +props.day 
+}
 
-  
+  axios.post(
+    "http://localhost:8888/api/home/available_Spots_Per_Day",
+    data,
+    { "Content-Type": "application/json" }
+  ).then(response => {
+    setAvailableHours(response.data.available_hours)
+    
+  })
  
-    //let dayname = weekday[props.day.getDay()];
-    console.log(props.day)
+    
+    //console.log(props)
   
   return (
     <>
       <details className="p-4 rounded-lg bg-white">
-        <summary className="font-semibold" >
-          <div className="w-48 flex ">
-          <span className="ml-4 ">{props.day.dayName} </span>
-          <span className="ml-auto">{props.day.day} </span>
-          <span className="ml-4">{props.day.month} </span>
+        <summary className="font-semibold flex items-center" >
+          <div className="ml-2 flex flex-col">
+            <span className="">{props.dayName}</span>
+            <span className="font-thin text-xs">heures disponibles : {availableHours}</span>
           </div>
+          <span className="ml-auto font-normal"> {props.day}</span>
+          <span className="ml-2 font-normal">/</span>
+          <span className="ml-2 font-normal">{props.month}</span>
 
         </summary>
         <div className="mt-3">
