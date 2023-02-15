@@ -54,7 +54,7 @@ export default function Day(props) {
               <div className="flex flex-wrap gap-2 justify-center">
                 {
                   horaire.matain.map((hour)=>{
-                    return reserved_hours.includes(hour) ? <Hour key={hour} hour={hour} reserved={false} /> : <Hour key={hour} hour={hour} reserved={true}/>
+                    return reserved_hours.includes(hour) ? <Hour key={hour} hour={hour} hour_reserved={false} /> : <Hour key={hour} hour={hour} hour_reserved={true}/>
                     
                   })
                 }
@@ -71,7 +71,7 @@ export default function Day(props) {
               <div className="flex flex-wrap gap-2 justify-center">
               {
                   horaire.midi.map((hour)=>{
-                    return reserved_hours.includes(hour) ? <Hour key={hour} hour={hour} reserved={false} /> : <Hour key={hour} hour={hour} reserved={true}/>
+                    return reserved_hours.includes(hour) ? <Hour key={hour} hour={hour} hour_reserved={false} /> : <Hour key={hour} hour={hour} hour_reserved={true}/>
                     
                   })
                 }
