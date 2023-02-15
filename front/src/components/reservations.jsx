@@ -19,7 +19,7 @@ const [days, setDays] = useState()
 useEffect(() => {
   const fetchData = async () => {
     const days = [];
-    for (var i = 0; i < 2; i++) {
+    for (var i = 0; i < 30; i++) {
       var date = new Date();
       date.setDate(date.getDate() + i);
       var jsonDate = { 

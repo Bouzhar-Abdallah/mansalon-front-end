@@ -2,22 +2,23 @@ import React from "react";
 import { Button } from "flowbite-react";
 export default function Hour(props) {
   
-  console.log(props)
   
-  let reserved = false
-/*   reserved = props.reservedHours.map((hour) => {
-    
-    if (hour.heure == props.data){ 
-        
-        return true
-}else return false
-}); */
-console.log(reserved)
-  return (
+  
+return props.reserved ? (
+    <div>
+      <Button className="w-12"  color="light">
+        {props.hour}
+      </Button>
+    </div>
+) : 
+    (
         <div>
-          <Button className="w-12" color={reserved ? "failure" : "light"}>
-            {props.Hour}
+          <Button className="w-12"  color="failure">
+            {props.hour}
           </Button>
         </div>
-  );
+  )
+
+
+
 }
