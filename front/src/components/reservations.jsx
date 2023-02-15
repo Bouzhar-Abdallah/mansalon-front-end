@@ -1,7 +1,11 @@
 import { Accordion, Button, Breadcrumb } from "flowbite-react";
+import axios from "axios";
 import Day from "./day";
+import { useEffect, useState } from "react";
 
 export default function reservations() {
+const [days, setDays] = useState()
+
   const weekday = [
   "dimanche",
   "lundi",
@@ -12,20 +16,39 @@ export default function reservations() {
   "samedi",
 ];
 
+useEffect(() => {
+  const fetchData = async () => {
+    const days = [];
+    for (var i = 0; i < 2; i++) {
+      var date = new Date();
+      date.setDate(date.getDate() + i);
+      var jsonDate = { 
+        id:i,
+        year: date.getFullYear(), 
+        month: date.getMonth() + 1, 
+        day: date.getDate(),
+        dayName: weekday[date.getDay()],
+        day_data: 0
+      };
+      
+      const data = {
+        "jour": jsonDate.dayName,
+        "date_jour": jsonDate.year + '-' + jsonDate.month + '-' +jsonDate.day 
+      }
+      const response = await axios.post(
+        "http://localhost:8888/api/home/available_Spots_Per_Day",
+        data,
+        { "Content-Type": "application/json" }
+      );
+      jsonDate.day_data = response.data
+      days.push(jsonDate);
+    }
+    setDays(days);
+  };
 
-  var days2 = [];
-  for (var i = 0; i < 1; i++) {
-    var date = new Date();
-    date.setDate(date.getDate() + i);
-    var jsonDate = { 
-      id:i,
-      year: date.getFullYear(), 
-      month: date.getMonth() + 1, 
-      day: date.getDate(),
-      dayName: weekday[date.getDay()]
-    };
-    days2.push(jsonDate);
-  }
+  fetchData();
+}, []);
+
 
 
   return (
@@ -40,7 +63,8 @@ export default function reservations() {
           <h1 className="text-center my-4">hello</h1>
           <div className="w-full md:px-2 mx-auto space-y-2  p-2 border-t ">
             
-            {days2.map((day)=>{
+            {days && days.map((day)=>{
+              
               return <Day key={day.id} {...day} />
             })}
                   

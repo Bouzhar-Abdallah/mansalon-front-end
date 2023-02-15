@@ -1,17 +1,61 @@
 import axios from "axios";
 import { Accordion, Button, Breadcrumb } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Hour from "./hours";
 
 export default function Day(props) {
   const [availableHours, setAvailableHours] = useState(null);
   const [reservedHours, setReservedHours] = useState(null);
-  const [workinHours, setWorkingdHours] = useState(null);
+  const [workingHours, setWorkingHours] = useState(null);
+  const [matainHours, setMatainHours] = useState([])
+  const [midiHours, setMidiHours] = useState([])
+  const [combinedHours, setCombinedHours] = useState([]);
+  const data = {
+    "jour": props.dayName,
+    "date_jour": props.year + '-' + props.month + '-' +props.day 
+  }
+console.log(props)
+  /* ********* */
+  
+/* useEffect(() => {
+  axios.post(
+    "http://localhost:8888/api/home/working_hours",
+    data,
+    { "Content-Type": "application/json" }
+  ).then(response => {
+    //setReservedHours(response.data.available_hours)
+    // setWorkingHours(response.data)
+   
+    let matainHours = []
+   for (let index = response.data.ouverture_matain; index < response.data.fermeture_matain; index++) {
+    matainHours.push(index)
 
-const data = {
-  "jour": props.dayName,
-  "date_jour": props.year + '-' + props.month + '-' +props.day 
-}
+   }
+   
+    let midiHours = []
+   for (let index = response.data.ouverture_midi; index < response.data.fermeture_midi; index++) {
+    midiHours.push(index)
 
+   }
+   setMidiHours(midiHours)
+   setMatainHours(matainHours)
+   
+  }) 
+
+  
+}, [])
+*/
+/* useEffect(() => {
+  axios.post(
+    "http://localhost:8888/api/home/reserved_Spots_Per_Day",
+    data,
+    { "Content-Type": "application/json" }
+  ).then(response => {
+    setReservedHours(response.data)
+    
+  })
+}, [])
+useEffect(() => {
   axios.post(
     "http://localhost:8888/api/home/available_Spots_Per_Day",
     data,
@@ -20,28 +64,10 @@ const data = {
     setAvailableHours(response.data.available_hours)
     
   })
+}, []) */
 
-  axios.post(
-    "http://localhost:8888/api/home/reserved_Spots_Per_Day",
-    data,
-    { "Content-Type": "application/json" }
-  ).then(response => {
-    //setReservedHours(response.data.available_hours)
-   // console.log(response.data);
-  })
 
-  axios.post(
-    "http://localhost:8888/api/home/working_hours",
-    data,
-    { "Content-Type": "application/json" }
-  ).then(response => {
-    //setReservedHours(response.data.available_hours)
-    //setWorkingdHours(response.data)
-    //console.log(workinHours)
-  })
- 
-    
-    //console.log(props)
+
   
   return (
     <>
@@ -64,26 +90,7 @@ const data = {
                 <h1 className="text-center">matain</h1>
               </div>
               <div className="flex flex-wrap gap-2 justify-center">
-                <div>
-                  <Button className="w-12" color="light">
-                    8
-                  </Button>
-                </div>
-                <div>
-                  <Button className="w-12" color="light">
-                    9
-                  </Button>
-                </div>
-                <div>
-                  <Button className="w-12" color="failure">
-                    10
-                  </Button>
-                </div>
-                <div>
-                  <Button className="w-12" color="light">
-                    11
-                  </Button>
-                </div>
+{/*  */}
               </div>
               {/* <div>
                     <Button className="w-12" color="success"></Button>
