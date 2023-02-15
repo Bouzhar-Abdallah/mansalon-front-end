@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import Hour from "./hours";
 
 export default function Day(props) {
-  //console.log(props.day_data)
+
+  const data = {
+    "jour": props.dayName,
+    "date_jour": props.year + '-' + props.month + '-' +props.day 
+  }
+  //console.log(data)
 
   const reserved_hours = props.day_data.reserved;
   const horaire = {
@@ -17,7 +22,14 @@ export default function Day(props) {
     i < props.day_data.working.fermeture_matain;
     i++
   ) {
-    horaire.matain.push(i);
+ 
+    horaire.matain.push(
+      {
+        "hour" : i,
+        "reserved" : reserved_hours.includes(i),
+        "date_jour": props.year + '-' + props.month + '-' +props.day
+      }
+    );
   }
 
   for (
@@ -25,7 +37,11 @@ export default function Day(props) {
     i < props.day_data.working.fermeture_midi;
     i++
   ) {
-    horaire.midi.push(i);
+    horaire.midi.push({
+      "hour" : i,
+      "reserved" : reserved_hours.includes(i),
+      "date_jour": props.year + '-' + props.month + '-' +props.day
+    });
   }
   //console.log(horaire);
   //console.log(reserved_hours);
@@ -52,33 +68,20 @@ export default function Day(props) {
                 <h1 className="text-center">matain</h1>
               </div>
               <div className="flex flex-wrap gap-2 justify-center">
-                {
-                  horaire.matain.map((hour)=>{
-                    return reserved_hours.includes(hour) ? <Hour key={hour} hour={hour} hour_reserved={false} /> : <Hour key={hour} hour={hour} hour_reserved={true}/>
-                    
-                  })
-                }
-                
+                {horaire.matain.map((hour) => {
+                  return (<Hour key={hour.hour} {...hour} />);
+                })}
               </div>
-              {/* <div>
-                    <Button className="w-12" color="success"></Button>
-                  </div> */}
             </div>
             <div className="flex flex-col">
               <div className="flex justify-center items-center mb-2">
                 <h1 className="text-center">apres midi</h1>
               </div>
               <div className="flex flex-wrap gap-2 justify-center">
-              {
-                  horaire.midi.map((hour)=>{
-                    return reserved_hours.includes(hour) ? <Hour key={hour} hour={hour} hour_reserved={false} /> : <Hour key={hour} hour={hour} hour_reserved={true}/>
-                    
-                  })
-                }
+              {horaire.midi.map((hour) => {
+                  return (<Hour key={hour.hour} {...hour} />);
+                })}
               </div>
-              {/* <div>
-                    <Button className="w-12" color="success"></Button>
-                  </div> */}
             </div>
           </div>
         </div>
