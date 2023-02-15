@@ -2,6 +2,7 @@ import { Accordion, Button, Breadcrumb } from "flowbite-react";
 import axios from "axios";
 import Day from "./day";
 import { useEffect, useState } from "react";
+import ConfirmationModel from "./confirmationModel";
 
 export default function reservations() {
 const [days, setDays] = useState()
@@ -19,7 +20,7 @@ const [days, setDays] = useState()
 useEffect(() => {
   const fetchData = async () => {
     const days = [];
-    for (var i = 0; i < 1; i++) {
+    for (var i = 0; i < 30; i++) {
       var date = new Date();
       date.setDate(date.getDate() + i)
       var jsonDate = { 

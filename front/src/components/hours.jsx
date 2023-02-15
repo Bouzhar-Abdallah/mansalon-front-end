@@ -2,29 +2,26 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button, Badge, Tooltip } from "flowbite-react";
 import { UserContext } from "../utilities/UserContext";
 import axios from "axios";
+import ConfirmationModel from "./confirmationModel";
 
 export default function Hour(props) {
     let {user} = useContext(UserContext)
-    let [reservation, setReservation] = useState()
- 
     
+    let [showConfirmation, setConfirmation] = useState(false)
+    //let {showConfirmation} = 
     
-        const makeReservation = async ()=>{
-            const data = {
-                "identifiant_utilisateur": user.identifiant,
-                "date_jour": props.date_jour,
-                "heure": props.hour
-            }
-            const response = await axios.post(
-                "http://localhost:8888/api/home/makeReservation",
-                data,
-                { "Content-Type": "application/json" }
-              )
-              setReservation(response)
-              console.log(response.data)
-        }
+    const data = {
+        "identifiant_utilisateur": user.identifiant,
+        "date_jour": props.date_jour,
+        "heure": props.hour
+    }
+        
 
-    
+    function confirmation() {
+       
+       setConfirmation(true)
+       
+    }
 
   return props.reserved ? (
     <Tooltip content="Reserved" style="light">
@@ -39,12 +36,16 @@ export default function Hour(props) {
       </div>
     </Tooltip>
   ) : (
+    <>
     <Tooltip content="available" style="light">
     <div>
-      <Button onClick={makeReservation} className="w-12" color="light">
+      <Button onClick={confirmation} className="w-12" color="light">
         {props.hour}
       </Button>
     </div>
+    
     </Tooltip>
+    {showConfirmation ? <ConfirmationModel show={showConfirmation} data={data} /> : <></>}
+    </>
   );
 }
