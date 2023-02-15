@@ -7,7 +7,7 @@ export default function Day(props) {
 
   const data = {
     "jour": props.dayName,
-    "date_jour": props.year + '-' + props.month + '-' +props.day 
+    "date_jour": +props.year + '-' + props.month + '-' +props.day 
   }
   //console.log(data)
 

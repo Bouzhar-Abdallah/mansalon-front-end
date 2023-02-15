@@ -21,7 +21,7 @@ useEffect(() => {
     const days = [];
     for (var i = 0; i < 1; i++) {
       var date = new Date();
-      date.setDate(date.getDate() + i);
+      date.setDate(date.getDate() + i)
       var jsonDate = { 
         id:i,
         year: date.getFullYear(), 
@@ -41,12 +41,12 @@ useEffect(() => {
         { "Content-Type": "application/json" }
       );
       jsonDate.day_data = response.data
-      days.push(jsonDate);
+      days.push(jsonDate)
     }
-    setDays(days);
+    setDays(days)
   };
 
-  fetchData();
+  fetchData()
 }, []);
 
 

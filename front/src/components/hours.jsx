@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Badge, Tooltip } from "flowbite-react";
+import { UserContext } from "../utilities/UserContext";
+import axios from "axios";
+
 export default function Hour(props) {
+    let {user} = useContext(UserContext)
+    let [reservation, setReservation] = useState()
+ 
+    
+    
+        const makeReservation = async ()=>{
+            const data = {
+                "identifiant_utilisateur": user.identifiant,
+                "date_jour": props.date_jour,
+                "heure": props.hour
+            }
+            const response = await axios.post(
+                "http://localhost:8888/api/home/makeReservation",
+                data,
+                { "Content-Type": "application/json" }
+              )
+              setReservation(response)
+              console.log(response.data)
+        }
+
+    
+
   return props.reserved ? (
     <Tooltip content="Reserved" style="light">
       <div
@@ -14,10 +39,12 @@ export default function Hour(props) {
       </div>
     </Tooltip>
   ) : (
+    <Tooltip content="available" style="light">
     <div>
-      <Button className="w-12" color="light">
+      <Button onClick={makeReservation} className="w-12" color="light">
         {props.hour}
       </Button>
     </div>
+    </Tooltip>
   );
 }
