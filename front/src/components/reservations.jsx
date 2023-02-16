@@ -4,6 +4,7 @@ import Day from "./day";
 import { useEffect, useState } from "react";
 import ConfirmationModel from "./confirmationModel";
 
+
 export default function reservations() {
 const [days, setDays] = useState()
 
@@ -54,10 +55,6 @@ useEffect(() => {
 
   return (
     <>
-      <Breadcrumb aria-label="Default breadcrumb example">
-        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-        <Breadcrumb.Item href="#">Projects</Breadcrumb.Item>
-      </Breadcrumb>
 
       <div className="p-5 ">
         <div className="lg:w-2/3 mx-auto bg-gray-300 p-4 border-t-2 bg-opacity-20 border-red-500 rounded-t">

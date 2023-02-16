@@ -9,6 +9,7 @@ import Reservations from './components/reservations';
 import ErrorPage from './error-page';
 import { UserContext } from './utilities/UserContext';
 import Test from './components/test';
+import Navbar from './components/navbar';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
     <>
     <Router>
       <UserContext.Provider value={{user, setUser}}> 
+      <Navbar/>
       <Routes >
         <Route element={<PrivateRoutes />} >
           <Route element={<Reservations />} path="/reservations" exact />
