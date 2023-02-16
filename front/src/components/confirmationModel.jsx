@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal, Flowbite } from "flowbite-react";
 import axios from "axios";
+import Test from "./test";
 
 export default function ConfirmationModel(props) {
   let [reservation, setReservation] = useState();
@@ -16,6 +17,8 @@ export default function ConfirmationModel(props) {
     setVisible(false);
   };
   return (
+    <>
+    
     <React.Fragment>
       <Modal
         show={visible}
@@ -54,6 +57,8 @@ export default function ConfirmationModel(props) {
           </div>
         </Modal.Body>
       </Modal>
+      
     </React.Fragment>
+    </>
   );
 }

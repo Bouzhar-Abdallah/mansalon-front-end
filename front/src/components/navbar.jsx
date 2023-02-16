@@ -9,7 +9,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-white shadow fixed w-full">
+    <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,12 +18,12 @@ export default function Navbar() {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-12 w-auto"
-                    src="./public/mansalon-logo.png"
+                    src="./mansalon-logo.png"
                     alt="Workflow"
                   />
                   <img
                     className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-red-600-mark-gray-800-text.svg"
+                    src="./mansalon-logo.png"
                     alt="Workflow"
                   />
                 </div>
@@ -42,12 +42,13 @@ export default function Navbar() {
                   >
                     Reservations
                   </Link>
-                  <a
+                  <Link
+                  to={"/test"}
                     href="#"
                     className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                   >
-                    Projects
-                  </a>
+                    test
+                  </Link>
                   <a
                     href="#"
                     className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
