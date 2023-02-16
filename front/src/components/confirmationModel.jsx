@@ -3,7 +3,7 @@ import {Button, Modal, Flowbite} from "flowbite-react"
 import axios from "axios";
 
 export default function ConfirmationModel(props){
-    console.log(props.data)
+    
     let [reservation, setReservation] = useState()
     const [visible,setVisible]=useState(props.show)
     const makeReservation = async ()=>{
@@ -14,6 +14,7 @@ export default function ConfirmationModel(props){
           )
           setReservation(response)
           console.log(response.data)
+          setVisible(false)
     }
     return(
         <React.Fragment>
