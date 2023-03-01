@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 import Hour from "./hours";
 
 export default function Day(props) {
-
   const data = {
-    "jour": props.dayName,
-    "date_jour": +props.year + '-' + props.month + '-' +props.day 
-  }
+    jour: props.dayName,
+    date_jour: +props.year + "-" + props.month + "-" + props.day,
+  };
   //console.log(data)
 
   const reserved_hours = props.day_data.reserved;
@@ -22,14 +21,11 @@ export default function Day(props) {
     i < props.day_data.working.fermeture_matain;
     i++
   ) {
- 
-    horaire.matain.push(
-      {
-        "hour" : i,
-        "reserved" : reserved_hours.includes(i),
-        "date_jour": props.year + '-' + props.month + '-' +props.day
-      }
-    );
+    horaire.matain.push({
+      hour: i,
+      reserved: reserved_hours.includes(i),
+      date_jour: props.year + "-" + props.month + "-" + props.day,
+    });
   }
 
   for (
@@ -38,9 +34,9 @@ export default function Day(props) {
     i++
   ) {
     horaire.midi.push({
-      "hour" : i,
-      "reserved" : reserved_hours.includes(i),
-      "date_jour": props.year + '-' + props.month + '-' +props.day
+      hour: i,
+      reserved: reserved_hours.includes(i),
+      date_jour: props.year + "-" + props.month + "-" + props.day,
     });
   }
   //console.log(horaire);
@@ -51,14 +47,16 @@ export default function Day(props) {
         <summary className="font-semibold flex items-center">
           <div className="ml-2 flex flex-col">
             <span className="">{props.dayName}</span>
-            <span className="font-thin text-xs">
+          <div className="font-thin text-xs">
+            <span className=""> {props.day}</span>
+            <span className="ml-2 ">/</span>
+            <span className="ml-2 ">{props.month}</span>
+          </div>
+          </div>
+            <span className="ml-auto font-normal">
               heures disponibles :{" "}
               {props.day_data.total_available.available_hours}
             </span>
-          </div>
-          <span className="ml-auto font-normal"> {props.day}</span>
-          <span className="ml-2 font-normal">/</span>
-          <span className="ml-2 font-normal">{props.month}</span>
         </summary>
         <div className="mt-3">
           <div className="text-sm leading-6 "></div>
@@ -69,7 +67,7 @@ export default function Day(props) {
               </div>
               <div className="flex flex-wrap gap-2 justify-center">
                 {horaire.matain.map((hour) => {
-                  return (<Hour key={hour.hour} {...hour} />);
+                  return <Hour key={hour.hour} {...hour} />;
                 })}
               </div>
             </div>
@@ -78,8 +76,8 @@ export default function Day(props) {
                 <h1 className="text-center">apres midi</h1>
               </div>
               <div className="flex flex-wrap gap-2 justify-center">
-              {horaire.midi.map((hour) => {
-                  return (<Hour key={hour.hour} {...hour} />);
+                {horaire.midi.map((hour) => {
+                  return <Hour key={hour.hour} {...hour} />;
                 })}
               </div>
             </div>
