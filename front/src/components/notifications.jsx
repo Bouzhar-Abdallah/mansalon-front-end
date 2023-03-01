@@ -18,9 +18,11 @@ export default function Notifications() {
       data,
       { "Content-Type": "application/json" }
     );
-    setReservation(response.data);
-    console.log(reservation)
-    console.log(user)
+    if(response.data.message == 'one record found'){
+        setReservation(response.data);
+        console.log(reservation)
+        
+    }
   };
 
   useEffect(() => {
@@ -33,7 +35,8 @@ export default function Notifications() {
 
   return (
     <>
-      <Button onClick={() => setShow(true)}>Toggle modal</Button>
+      <Button onClick={() => {fetchData();
+        setShow(true);}}>Toggle modal</Button>
       <Modal show={show} onClose={onClose}>
         <Modal.Header>Votre prochain Rendez-vous: </Modal.Header>
         <Modal.Body>
@@ -75,7 +78,7 @@ export default function Notifications() {
               </div>
             </div>
           ) : (
-            <div>Loading...</div>
+            <div>you have no reservation at the moment</div>
           )}
         </Modal.Body>
         <Modal.Footer>
