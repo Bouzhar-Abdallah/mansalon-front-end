@@ -1,11 +1,40 @@
 import React, { useState } from "react";
 import { Button, Modal, Flowbite } from "flowbite-react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import Test from "./test";
 
 export default function ConfirmationModel(props) {
   let [reservation, setReservation] = useState();
   const [visible, setVisible] = useState(props.show);
+
+  const notify = (string) => {
+    if (string == 'success') {
+      
+      toast.success('Reservation created succesefully', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }else if (string == 'failure') {
+      toast.error('something went wrong', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    }
+  };
   const makeReservation = async () => {
     const response = await axios.post(
       "http://localhost:8888/api/home/makeReservation",
@@ -13,12 +42,19 @@ export default function ConfirmationModel(props) {
       { "Content-Type": "application/json" }
     );
     setReservation(response);
-    console.log(response.data);
+    if (response.data.message == 'reservation created') {
+      notify('success')
+    }else{
+      notify('failure')
+    }
+    
     setVisible(false);
   };
   return (
     <>
     
+        <ToastContainer />
+      
     <React.Fragment>
       <Modal
         show={visible}
@@ -53,6 +89,7 @@ export default function ConfirmationModel(props) {
               >
                 annuller
               </Button>
+              
             </div>
           </div>
         </Modal.Body>
