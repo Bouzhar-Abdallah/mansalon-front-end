@@ -12,8 +12,8 @@ export default function ConfirmCancel(props) {
 
   let [reservation, setReservation] = useState();
   let [visible, setVisible] = useState(true);
-  let constsetParentShow = props.setShow
-  console.log('#'+ visible +'#')
+  let setParentShow = props.setShow
+  
   const notify = (string) => {
     if (string == "success") {
       toast.success("Reservation canceled", {
@@ -54,8 +54,8 @@ export default function ConfirmCancel(props) {
     }
     
     setVisible(false);
-    
-    window.location.reload(false);
+    setParentShow(false)
+    //window.location.reload(false);
   };
   return (
     <>

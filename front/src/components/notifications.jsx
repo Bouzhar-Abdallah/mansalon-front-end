@@ -26,6 +26,11 @@ export default function Notifications() {
       
     }
   };
+  function handleCloseConfirmation() {
+    setShow(false);
+
+  }
+
   function confirmation() {
        
     setConfirmation(true)
@@ -69,7 +74,7 @@ export default function Notifications() {
         <Modal.Body>
           {reservation ? (
             <>
-            {showConfirmation ? <ConfirmCancel setShow={setConfirmation} show={showConfirmation} data={reservation.data} /> : <></>}
+            {showConfirmation ? <ConfirmCancel setShow={handleCloseConfirmation} show={showConfirmation} data={reservation.data} /> : <></>}
               <div className="space-y-6">
                 <div className="overflow-hidden bg-white shadow sm:rounded-lg">
                   <div className="border-t border-gray-200">
