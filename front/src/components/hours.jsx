@@ -9,7 +9,6 @@ export default function Hour(props) {
     let {user} = useContext(UserContext)
     
     let [showConfirmation, setConfirmation] = useState(false)
-    //let {showConfirmation} = 
     
     const data = {
         "identifiant_utilisateur": user.identifiant,
@@ -17,11 +16,8 @@ export default function Hour(props) {
         "heure": props.hour
     }
         
-
     function confirmation() {
-       
        setConfirmation(true)
-       
     }
 
   return props.reserved ? (

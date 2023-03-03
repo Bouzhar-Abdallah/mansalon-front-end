@@ -3,7 +3,7 @@ import axios from "axios";
 import Day from "./day";
 import { useEffect, useState } from "react";
 import ConfirmationModel from "./confirmationModel";
-
+import Navbar from './navbar';
 
 export default function reservations() {
 const [days, setDays] = useState()
@@ -55,7 +55,8 @@ useEffect(() => {
 
   return (
     <>
-
+  
+    <Navbar/>
       <div className="p-5 ">
         <div className="lg:w-2/3 mx-auto bg-gray-300 p-4 border-t-2 bg-opacity-20 border-red-500 rounded-t">
           <h1 className="text-center my-4">hello</h1>

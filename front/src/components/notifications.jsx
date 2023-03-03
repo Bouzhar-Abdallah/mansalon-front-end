@@ -23,7 +23,6 @@ export default function Notifications() {
     );
     if (response.data.message == "one record found") {
       setReservation(response.data);
-      
     }
   };
   function handleCloseConfirmation() {

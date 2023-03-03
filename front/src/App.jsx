@@ -26,7 +26,7 @@ function App() {
     <>
     <Router>
       <UserContext.Provider value={{user, setUser}}> 
-      <Navbar/>
+      
       <Routes >
         <Route element={<PrivateRoutes />} >
           <Route element={<Reservations />} path="/reservations" exact />
