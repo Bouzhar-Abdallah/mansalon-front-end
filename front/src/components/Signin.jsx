@@ -11,7 +11,7 @@ const {user, setUser} = useContext(UserContext)
 const navigate = useNavigate()
 function handleInputChange(event) {
   setToken(event.target.value)
-    console.log(token)
+    
 }
 function handleSubmit() {
   /* () =>{
@@ -32,7 +32,7 @@ function handleSubmit() {
         if(response.data.message == 'login success'){
           setUser({ isLoggedIn: true, ...response.data.user });
           navigate("/reservations")
-          console.log('from signin '+user)
+          //console.log('from signin '+user)
         }
       })
     }

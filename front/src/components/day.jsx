@@ -39,8 +39,7 @@ export default function Day(props) {
       date_jour: props.year + "-" + props.month + "-" + props.day,
     });
   }
-  //console.log(horaire);
-  //console.log(reserved_hours);
+
   return (
     <>
       <details className="p-4 rounded-lg bg-white">

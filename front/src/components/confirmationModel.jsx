@@ -6,9 +6,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import Test from "./test";
 
 export default function ConfirmationModel(props) {
-  let [reservation, setReservation] = useState();
+  //let [reservation, setReservation] = useState();
   const [visible, setVisible] = useState(props.show);
-
+  const reservation = JSON.parse(localStorage.getItem('reservation'))
+  
+  //const reservation = localStorage.getItem('reservation');
   const notify = (string) => {
     if (string == 'success') {
       
@@ -41,7 +43,8 @@ export default function ConfirmationModel(props) {
       props.data,
       { "Content-Type": "application/json" }
     );
-    setReservation(response);
+   
+    localStorage.setItem('reservation', JSON.stringify(response.data.reservation));
     if (response.data.message == 'reservation created') {
       notify('success')
     }else{
@@ -71,11 +74,29 @@ export default function ConfirmationModel(props) {
               className="mb-5 text-lg font-normal text-gray-500
          dark:text-gray-400"
             >
-              voulez vous confirmer ?
+              {reservation ? 
+              <>
+              <h1>voulez vous changer :</h1>
+              <div>
+                <span className="">le {reservation.date_jour}</span>
+                <span className=""> a {reservation.heure}:00</span>
+              </div>
+              <h1>par :</h1>
               <div>
                 <span className="">le {props.data.date_jour}</span>
                 <span className=""> a {props.data.heure}:00</span>
               </div>
+              </>
+              :
+              <>
+              <h1>voulez vous confirmer ?</h1>
+              <div>
+                <span className="">le {props.data.date_jour}</span>
+                <span className=""> a {props.data.heure}:00</span>
+              </div>
+              </>
+                }
+              
             </h3>
             <div className="flex justify-center gap-4">
               <Button color="success" onClick={makeReservation}>
