@@ -8,8 +8,11 @@ import Test from "./test";
 export default function ConfirmationModel(props) {
   //let [reservation, setReservation] = useState();
   const [visible, setVisible] = useState(props.show);
-  const reservation = JSON.parse(localStorage.getItem("reservation"));
-
+  const reservationStr = localStorage.getItem("reservation");
+  let reservation = null
+  if (reservationStr !== null){
+    reservation = JSON.parse(reservationStr)
+  }
   //const reservation = localStorage.getItem('reservation');
   const notify = (string) => {
     if (string == "success") {
@@ -52,6 +55,8 @@ export default function ConfirmationModel(props) {
   };
   const makeReservation = async () => {
     if (reservation) {
+      console.log('defined')
+      
       const response = await axios.post(
         "http://localhost:8888/api/home/updateReservation",
         
@@ -62,8 +67,8 @@ export default function ConfirmationModel(props) {
         ,
         { "Content-Type": "application/json" }
       );
-        console.log(response.data)
-      //localStorage.setItem('reservation', JSON.stringify(response.data.reservation));
+      
+      
       if (response.data.message == "reservation updated") {
         notify("success");
       } else {
@@ -72,14 +77,15 @@ export default function ConfirmationModel(props) {
 
       setVisible(false);
     } else {
+      console.log('not defined')
       const response = await axios.post(
         "http://localhost:8888/api/home/makeReservation",
         props.data,
         { "Content-Type": "application/json" }
       );
-
-      //localStorage.setItem('reservation', JSON.stringify(response.data.reservation));
+      //console.log(response.data)
       if (response.data.message == "reservation created") {
+        //localStorage.setItem('reservation', JSON.stringify(response.data.reservation));
         notify("success");
       } else if (
         response.data.message == "you already has a pending reservation"
