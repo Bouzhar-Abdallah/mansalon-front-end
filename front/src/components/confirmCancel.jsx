@@ -54,6 +54,7 @@ export default function ConfirmCancel(props) {
     }
     
     setVisible(false);
+    localStorage.removeItem('reservation')
     setParentShow(false)
     //window.location.reload(false);
   };

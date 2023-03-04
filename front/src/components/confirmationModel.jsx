@@ -35,6 +35,17 @@ export default function ConfirmationModel(props) {
         progress: undefined,
         theme: "light",
         });
+    }else if (string == 'already') {
+      toast.error('you already have a pending reservation, please cancel or edit', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     }
   };
   const makeReservation = async () => {
@@ -44,9 +55,11 @@ export default function ConfirmationModel(props) {
       { "Content-Type": "application/json" }
     );
    
-    localStorage.setItem('reservation', JSON.stringify(response.data.reservation));
+    //localStorage.setItem('reservation', JSON.stringify(response.data.reservation));
     if (response.data.message == 'reservation created') {
       notify('success')
+    }else if(response.data.message == 'you already has a pending reservation'){
+      notify('already')
     }else{
       notify('failure')
     }
@@ -70,7 +83,7 @@ export default function ConfirmationModel(props) {
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
-            <h3
+            <div
               className="mb-5 text-lg font-normal text-gray-500
          dark:text-gray-400"
             >
@@ -97,7 +110,7 @@ export default function ConfirmationModel(props) {
               </>
                 }
               
-            </h3>
+            </div>
             <div className="flex justify-center gap-4">
               <Button color="success" onClick={makeReservation}>
                 oui confirmer

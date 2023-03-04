@@ -8,6 +8,7 @@ import axios from "axios";
 import ConfirmCancel from "./confirmCancel";
 
 export default function Notifications() {
+ 
   const [showConfirmation, setConfirmation] = useState(false);
   const [show, setShow] = useState(false);
   const [reservation, setReservation] = useState(null);
