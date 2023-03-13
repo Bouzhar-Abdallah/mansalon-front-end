@@ -12,7 +12,7 @@ export default function Hour(props) {
     let [reserved, setReserved] = useState(props.reserved)
     function reservationSuccess(){
       setReserved(true)
-      console.log('reserved')
+      
     }
     const data = {
         "identifiant_utilisateur": user.identifiant,

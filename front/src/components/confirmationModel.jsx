@@ -70,6 +70,7 @@ export default function ConfirmationModel(props) {
       
       
       if (response.data.message == "reservation updated") {
+        props.onreservation()
         notify("success");
       } else {
         notify("failure");

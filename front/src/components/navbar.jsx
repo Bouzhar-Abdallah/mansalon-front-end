@@ -10,8 +10,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const {user, setUser} = useContext(UserContext)
- 
+  const { user, setUser } = useContext(UserContext);
 
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -34,25 +33,23 @@ export default function Navbar() {
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   {/* Current: "border-red-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  
+
                   <Link
                     to={"/"}
-                    className="border-red-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                    className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                   >
                     Home
                   </Link>
                   <Link
                     to={"/reservations"}
-                    className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                    className="border-red-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                   >
                     Reservations
                   </Link>
-                  
                 </div>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                
-              <Notifications />
+                <Notifications />
 
                 {/* <button
                   type="button"
@@ -81,10 +78,9 @@ export default function Navbar() {
                   <div>
                     <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                       <span className="sr-only">Open user menu</span>
-                     {/* image */}
+                      {/* image */}
                     </Menu.Button>
                   </div>
-                  
                 </Menu>
               </div>
               <div className="-mr-2 flex items-center sm:hidden">
@@ -126,7 +122,7 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-{/* mobile */}
+          {/* mobile */}
           <Disclosure.Panel className="sm:hidden">
             <div className="pt-2 pb-3 space-y-1">
               {/* {Current: "bg-red-50 border-red-500 text-red-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"} */}
@@ -145,35 +141,30 @@ export default function Navbar() {
                 Reservations
               </Disclosure.Button>
               <div className="mt-3 space-y-1">
-                
                 <Disclosure.Button
                   as="a"
                   href="#"
-                  onClick={(()=>{
-                    
-                    setUser(null)
-                  })}
+                  onClick={() => {
+                    setUser(null);
+                  }}
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
                 >
                   Sign out
                 </Disclosure.Button>
               </div>
-              
             </div>
             <div className="pt-4 pb-3 border-t border-gray-200">
               <div className="flex items-center px-4">
-                
                 <div className="ml-3">
                   <div className="text-base font-medium text-gray-800">
                     <span className=" capitalize mx-1">{user.nom}</span>
                     <span className="capitalize mx-1">{user.prenom}</span>
-                    
                   </div>
                   <div className="ml-1 text-sm font-medium text-gray-500">
                     {user.email}
                   </div>
                 </div>
-               {/*  <button
+                {/*  <button
                   type="button"
                   className="ml-auto flex-shrink-0 bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                 >
@@ -195,7 +186,6 @@ export default function Navbar() {
                 </button> */}
                 <Notifications />
               </div>
-              
             </div>
           </Disclosure.Panel>
         </>
