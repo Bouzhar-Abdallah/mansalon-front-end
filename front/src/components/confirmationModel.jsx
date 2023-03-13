@@ -86,6 +86,7 @@ export default function ConfirmationModel(props) {
       //console.log(response.data)
       if (response.data.message == "reservation created") {
         //localStorage.setItem('reservation', JSON.stringify(response.data.reservation));
+        props.onreservation()
         notify("success");
       } else if (
         response.data.message == "you already has a pending reservation"

@@ -9,7 +9,11 @@ export default function Hour(props) {
     let {user} = useContext(UserContext)
     
     let [showConfirmation, setConfirmation] = useState(false)
-    
+    let [reserved, setReserved] = useState(props.reserved)
+    function reservationSuccess(){
+      setReserved(true)
+      console.log('reserved')
+    }
     const data = {
         "identifiant_utilisateur": user.identifiant,
         "date_jour": props.date_jour,
@@ -20,7 +24,7 @@ export default function Hour(props) {
        setConfirmation(true)
     }
 
-  return props.reserved ? (
+  return reserved ? (
     <Tooltip content="Reserved" style="light">
       <div
         className="text-gray-900 bg-red-400 border border-red-700 hover:bg-red-300
@@ -42,8 +46,7 @@ export default function Hour(props) {
     </div>
     
     </Tooltip>
-    {showConfirmation ? <ConfirmationModel show={showConfirmation} data={data} /> : <></>}
-    
+    {showConfirmation ? <ConfirmationModel onreservation={reservationSuccess} show={showConfirmation} data={data} /> : <></>}
     </>
   );
 }
