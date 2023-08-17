@@ -15,8 +15,19 @@ export default function ConfirmationModel(props) {
   }
   //const reservation = localStorage.getItem('reservation');
   const notify = (string) => {
-    if (string == "success") {
+    if (string == "updated") {
       toast.success("Reservation updated succesefully", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }else if (string == "created") {
+      toast.success("Reservation created succesefully", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -71,7 +82,7 @@ export default function ConfirmationModel(props) {
       
       if (response.data.message == "reservation updated") {
         props.onreservation()
-        notify("success");
+        notify("updated");
       } else {
         notify("failure");
       }
@@ -88,7 +99,7 @@ export default function ConfirmationModel(props) {
       if (response.data.message == "reservation created") {
         //localStorage.setItem('reservation', JSON.stringify(response.data.reservation));
         props.onreservation()
-        notify("success");
+        notify("created");
       } else if (
         response.data.message == "you already has a pending reservation"
       ) {
